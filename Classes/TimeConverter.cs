@@ -5,7 +5,7 @@ namespace BerlinClock
 {
     public class TimeConverter : ITimeConverter
     {
-        //I've change method name to start with capital letter (to be consistend, we are also using methods starting with capital letters in specflow tests).
+        //I've change method name to start with capital letter (to be consistend, as we are also using methods starting with capital letters in specflow tests).
         public string ConvertTime(string aTime)
         {
             if (!Regex.IsMatch(aTime, "^((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])|(24:00:00)$"))
@@ -33,10 +33,9 @@ namespace BerlinClock
             var numberOfSetCharsInFirstRow = hours / 5;
             var numberOfSetCharsInSecondRow = hours % 5;
 
-            var result = String.Format("{0}\n{1}", 
+            return String.Format("{0}\n{1}", 
                                         LineWriter('R', numberOfSetCharsInFirstRow, 4), 
                                         LineWriter('R', numberOfSetCharsInSecondRow, 4));
-            return result;
         }
 
         private string ConvertMinutes(short minutes)
@@ -44,10 +43,9 @@ namespace BerlinClock
             var numberOfSetCharsInFirstRow = minutes / 5;
             var numberOfSetCharsInSecondRow = minutes % 5;
 
-            var result = String.Format("{0}\n{1}",
+            return String.Format("{0}\n{1}",
                                         LineWriter('Y', numberOfSetCharsInFirstRow, 11, 'O', 'R', 3),
                                         LineWriter('Y', numberOfSetCharsInSecondRow, 4));
-            return result;
         }
 
         private string LineWriter(char charToUse, int numberOfOccurrance, int lineLength, char charToComplement = 'O', char? alternateChar = null, int? alternateCharPosition = null)

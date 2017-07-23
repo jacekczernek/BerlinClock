@@ -51,7 +51,7 @@ OOOO
 """
 
 
-Scenario: Incorrect input
+Scenario: Incorrect word input
 When the time is "wrong"
 Then the exception should be thrown
 """
@@ -67,6 +67,20 @@ Input string is not in correct format (hh:mm:ss)
 
 Scenario: Incorrect time after midnight
 When the time is "24:00:01"
+Then the exception should be thrown
+"""
+Input string is not in correct format (hh:mm:ss)
+"""
+
+Scenario: Incorrectly short input
+When the time is "18:00"
+Then the exception should be thrown
+"""
+Input string is not in correct format (hh:mm:ss)
+"""
+
+Scenario: Characters from outside of ASCII
+When the time is "汉语/漢語"
 Then the exception should be thrown
 """
 Input string is not in correct format (hh:mm:ss)
